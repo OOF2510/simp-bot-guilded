@@ -9,31 +9,17 @@ function checkDomain(domain) {
   const regex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
   return regex.test(domain);
 }
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("domainwhois")
-    .setDescription("whois lookup on specified domain")
-    .addStringOption((option) =>
-      option
-        .setName("domain")
-        .setDescription("domain to get info of")
-        .setRequired(true)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let domain = interaction.options.getString("domain");
+  async execute(msg, client, config) {
+    let domain = msg.options.getString("domain");
 
     if (!checkDomain(domain)) return msg.reply("That is not a valid domain!");
     let tld = domain.split(".")[1];

@@ -1,21 +1,13 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("bread")
-    .setDescription("gives bread to user"),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
+  async execute(msg, client, config) {
     msg.reply(`Here is your bread: :bread:`); // wow what a sellout cant even afford bread
   },
 };

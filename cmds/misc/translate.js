@@ -1,6 +1,3 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
 const translate = require("translate-google");
 //https://github.com/shikar/NODE_GOOGLE_TRANSLATE/blob/master/languages.js
 const langs = {
@@ -130,41 +127,19 @@ function isSupported(desiredLang) {
   return Boolean(getCode(desiredLang));
 }
 // ------------------------------------------------------
+const { Client, Message } = require("guilded.ts");
+
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("translate")
-    .setDescription("Translate text between two languages")
-    .addStringOption((option) =>
-      option
-        .setName("text")
-        .setDescription("Text to translate")
-        .setRequired(true)
-    )
-    .addStringOption((option) =>
-      option
-        .setName("base-lang")
-        .setDescription("Language to translate from")
-        .setRequired(true)
-    )
-    .addStringOption((option) =>
-      option
-        .setName("result-lang")
-        .setDescription("Language to translate to")
-        .setRequired(true)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let text = interaction.options.getString("text");
-    let baseLang = interaction.options.getString("base-lang");
-    let resLang = interaction.options.getString("result-lang");
+  async execute(msg, client, config) {
+    let text = msg.options.getString("text");
+    let baseLang = msg.options.getString("base-lang");
+    let resLang = msg.options.getString("result-lang");
 
     let langstring = JSON.stringify(langs);
 

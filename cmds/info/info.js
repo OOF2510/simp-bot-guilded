@@ -1,26 +1,18 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
 const { promisify } = require("util");
 const exec = promisify(require("child_process").exec);
 let os = require("os");
 const millisecondsToStr = require("./../../util/convertMilsec.js");
 const formatBytes = require("./../../util/formatBytes.js");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("info")
-    .setDescription("Info about the bot and server"),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
+  async execute(msg, client, config) {
     let guild = msg.guild;
 
     var uptimeMilsec = os.uptime() * 1000,

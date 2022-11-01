@@ -1,29 +1,15 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
 const urban = require("relevant-urban");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("urban-dictionary")
-    .setDescription("Search the urban dictionary")
-    .addStringOption((option) =>
-      option
-        .setName("word")
-        .setDescription("Word or phrase to search for")
-        .setRequired(true)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let word = interaction.options.getString("word");
+  async execute(msg, client, config) {
+    let word = msg.options.getString("word");
     await msg.deferReply();
 
     try {

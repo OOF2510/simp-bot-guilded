@@ -1,21 +1,13 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("invite")
-    .setDescription("Sends the bot's invite link"),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
+  async execute(msg, client, config) {
     let invEm = new EmbedBuilder()
       .setTitle(`Invite me to your server!`)
       .setURL(

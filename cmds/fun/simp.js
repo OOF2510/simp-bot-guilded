@@ -1,28 +1,14 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("simp")
-    .setDescription("Sends a random simp image/message/gif")
-    .addUserOption((option) =>
-      option
-        .setName("user")
-        .setDescription("user to direct message at")
-        .setRequired(false)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let recipient = interaction.options.getUser("user") || interaction.author;
+  async execute(msg, client, config) {
+    let recipient = msg.options.getUser("user") || msg.author;
 
     let responses = [
       `${recipient} damn you thicc`,

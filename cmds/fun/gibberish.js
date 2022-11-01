@@ -1,25 +1,17 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
 const { promisify } = require("util");
 const exec = promisify(require("child_process").exec);
 let path = require("path");
 
+const { Client, Message } = require("guilded.ts");
+
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("gibberish")
-    .setDescription("Generate gibberish"),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-
+  async execute(msg, client, config) {
     let Gibberish = await exec(
         `python3 ${path.join(
           __dirname,

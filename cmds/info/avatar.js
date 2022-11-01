@@ -1,28 +1,15 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("avatar")
-    .setDescription("Gets a user's avatar")
-    .addUserOption((option) =>
-      option
-        .setName("user")
-        .setDescription("User to get avatar of")
-        .setRequired(false)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let user = interaction.options.getUser("user") || interaction.author;
-    let mem = interaction.guild.members.cache.get(user.id);
+  async execute(msg, client, config) {
+    let user = msg.options.getUser("user") || msg.author;
+    let mem = msg.guild.members.cache.get(user.id);
 
     let userNick = mem ? mem.displayName : user.username;
 
@@ -34,6 +21,6 @@ module.exports = {
       .setColor(config.embedColor)
       .setTimestamp();
 
-    await interaction.reply({ embeds: [avEm] });
+    await msg.reply({ embeds: [avEm] });
   },
 };

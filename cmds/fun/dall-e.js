@@ -1,35 +1,16 @@
-const {
-  SlashCommandBuilder,
-  AttachmentBuilder,
-  EmbedBuilder,
-} = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
 const Craiyon = require("craiyon");
 
+const { Client, Message } = require("guilded.ts");
+
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("craiyon")
-    .setDescription(
-      "Uses Craiyon to grenerate an image based on a prompt. This can take up to 3 mins to run."
-    )
-    .addStringOption((option) =>
-      option
-        .setName("prompt")
-        .setDescription("prompt to base image off of")
-        .setRequired(true)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let prompt = interaction.options.getString("prompt");
+  async execute(msg, client, config) {
+    let prompt = msg.options.getString("prompt");
 
     await msg.deferReply();
 

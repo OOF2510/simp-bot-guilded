@@ -1,29 +1,15 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
 const { getPost } = require("random-reddit");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("reddit")
-    .setDescription("get a random post from specified subreddit")
-    .addStringOption((option) =>
-      option
-        .setName("subreddit")
-        .setDescription("subreddit name (without 'r/')")
-        .setRequired(true)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let sub = interaction.options.getString("subreddit");
+  async execute(msg, client, config) {
+    let sub = msg.options.getString("subreddit");
 
     try {
       let post = await getPost(`${sub}`);

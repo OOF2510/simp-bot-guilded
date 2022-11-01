@@ -1,25 +1,14 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { CommandInteraction, Client } = require("discord.js"),
-  Sequelize = require("sequelize");
+const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("pp")
-    .setDescription("pp size")
-    .addUserOption((option) =>
-      option.setName("user").setDescription("description").setRequired(false)
-    ),
   /**
    * Executes the command
-   * @param {CommandInteraction} interaction
+   * @param {Message} msg
    * @param {Client} client
    * @param {*} config
-   * @param {Sequelize} db
-   * @param {Array} allowed
    */
-  async execute(interaction, client, config, db, allowed) {
-    let msg = interaction;
-    let recipient = interaction.options.getUser("user") || interaction.author;
+  async execute(msg, client, config) {
+    let recipient = msg.options.getUser("user") || msg.author;
 
     let response;
     let recMem = msg.guild.members.cache.get(recipient.id);

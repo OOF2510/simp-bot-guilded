@@ -1,0 +1,32 @@
+const { Client, Message } = require("guilded.ts");
+
+module.exports = {
+  /**
+   * Executes the command
+   * @param {Message} msg
+   * @param {Client} client
+   * @param {*} config
+   */
+  async execute(msg, client, config) {
+    let sides = ["Heads", "Tails"];
+    let result = sides[Math.floor(Math.random() * sides.length)];
+    let img;
+
+    switch (result) {
+      case "Heads":
+        img =
+          "https://media.discordapp.net/attachments/1021763955099717664/1021768326504005735/Heads.png";
+        break;
+
+      case "Tails":
+        img =
+          "https://media.discordapp.net/attachments/1021763955099717664/1021768326860525728/Tails.png";
+        break;
+
+      default:
+        break;
+    }
+
+    msg.reply(`${result}\n${img}`);
+  },
+};
