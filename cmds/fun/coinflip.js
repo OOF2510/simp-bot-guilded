@@ -1,13 +1,7 @@
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require('guilded.ts');
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
+ async execute(msg, args, client, config) {
     let sides = ["Heads", "Tails"];
     let result = sides[Math.floor(Math.random() * sides.length)];
     let img;
@@ -27,6 +21,11 @@ module.exports = {
         break;
     }
 
-    msg.reply(`${result}\n${img}`);
+    let embed = new Embed()
+      .setTitle(`${result}`)
+      .setImage(`${img}`)
+      .setColor(config.embedColor);
+
+    msg.reply({ embeds: [embed] });
   },
 };

@@ -1,19 +1,16 @@
-const { Client, Message } = require("guilded.ts");
-
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let recipient = msg.options.getUser("user") || msg.author;
+  async execute(msg, args, client, config) {
+    let recipient
+    if (msg.mentions) {
+      recipient = client.users.cache.get(msg.mentions.users[0])
+    } else {
+      recipient = msg.author
+    }
 
     let responses = [
       `${recipient} damn you thicc`,
       `I paid 15 dollars for you to read my name on Twitch! `,
-      `Hey ${recipient}! where my hug at???`,
+      `Hey ${recipient}! where my hug at??`,
       `${recipient} frick me! Please! I need attention!`,
       `Dang ${recipient} I donated to your Patreon, but still no OnlyFans! Big sad.`,
       `Is this guy bothering you, babe?!`,

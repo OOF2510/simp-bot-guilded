@@ -1,18 +1,10 @@
 const Craiyon = require("craiyon");
 
-const { Client, Message } = require("guilded.ts");
-
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let prompt = msg.options.getString("prompt");
+  async execute(msg, args, client, config) {
+    let prompt = args[0]
 
-    await msg.deferReply();
+    
 
     try {
       const craiyon = new Craiyon.Client();
@@ -22,7 +14,7 @@ module.exports = {
 
       let attachment = new AttachmentBuilder(buffer, { name: `${prompt}.jpg` });
 
-      await msg.editReply({
+      await msg.reply({
         content: `Prompt: **${prompt}**`,
         files: [attachment],
       });

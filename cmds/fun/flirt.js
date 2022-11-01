@@ -1,18 +1,13 @@
 const axios = require("axios");
 
-const { Client, Message } = require("guilded.ts");
-
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let recipient = msg.options.getUser("user");
-
-    await msg.deferReply();
+  async execute(msg, args, client, config) {
+    let recipient
+    if (msg.mentions) {
+      recipient = client.users.cache.get(msg.mentions.users[0])
+    } else {
+      recipient = msg.author
+    }
 
     try {
       let { data } = await axios.get(
@@ -20,9 +15,9 @@ module.exports = {
       );
       let { line } = data;
 
-      return msg.editReply(`${recipient ? recipient : ""} ${line}`);
+      return msg.reply(`${recipient ? recipient : ""} ${line}`);
     } catch (e) {
-      return msg.editReply({ content: "Error!", ephemeral: true });
+      return msg.reply({ content: "Error!" });
     }
   },
 };

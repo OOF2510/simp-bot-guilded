@@ -3,16 +3,10 @@ const exec = promisify(require("child_process").exec);
 let os = require("os");
 const millisecondsToStr = require("./../../util/convertMilsec.js");
 const formatBytes = require("./../../util/formatBytes.js");
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
+  async execute(msg, args, client, config) {
     let guild = msg.guild;
 
     var uptimeMilsec = os.uptime() * 1000,
@@ -29,77 +23,21 @@ module.exports = {
     let NodeV = await exec("node -v"),
       nodeV = NodeV.stdout.trim();
 
-    let DjsV = require("../../package.json").dependencies["discord.js"],
+    let DjsV = require("../../package.json").dependencies["guilded.ts"],
       djsV = DjsV.replace("^", "v");
 
-    var options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      },
-      ServerCreated = guild.createdAt,
-      serverCreated = ServerCreated.toLocaleDateString("en-US", options),
-      today = new Date();
-    (ServerAge = today.getTime() - ServerCreated.getTime()),
-      (serverAge = millisecondsToStr(ServerAge));
-
-    let serverOwner = await msg.guild.fetchOwner();
-
-    let infoEm = new EmbedBuilder()
+    let infoEm = new Embed()
+      .addField('Platform', os.platform(), true)
+      .addField('OS Release', os.release(), true)
+      .addField('OS Version', os.version(), true)
+      .addField('Uptime', uptime, true)
+      .addField('Bot Uptime', botUptime, true)
+      .addField('Bot RAM Usage', memUsage, true)
+      .addField('System RAM Usage', sysMemUsage, true)
+      .addField('Node Version', nodeV, true)
+      .addField('Guilded.ts Version', djsV, true)
+      .setColor(config.embedColor)
       .setTitle("Info")
-      .addFields(
-        { name: "Server Info", value: "Information about the server" },
-        { name: "Members", value: `${guild.memberCount}`, inline: true },
-        { name: "Roles", value: `${guild.roles.cache.size}`, inline: true },
-        {
-          name: "Channels",
-          value: `${guild.channels.cache.size}`,
-          inline: true,
-        },
-        {
-          name: "Emojis",
-          value: `${guild.emojis.cache.size}`,
-          inline: true,
-        },
-        {
-          name: "Stickers",
-          value: `${guild.stickers.cache.size}`,
-          inline: true,
-        },
-        { name: "Server ID", value: `${guild.id}`, inline: true },
-        {
-          name: "Server Owner",
-          value: `${serverOwner}`,
-          inline: true,
-        },
-        {
-          name: `Server Created`,
-          value: `${serverCreated} (${serverAge} ago)`,
-          inline: true,
-        },
-        {
-          name: "OS Info",
-          value: `Information about the bot's OS`,
-          inline: false,
-        },
-        { name: "Platform", value: "`" + os.platform() + "`", inline: true },
-        { name: "Arch", value: "`" + os.arch() + "`", inline: true },
-        { name: "Release", value: "`" + os.release() + "`", inline: true },
-        { name: "Version", value: "`" + os.version() + "`", inline: true },
-        { name: "Bot RAM Usage", value: "`" + memUsage + "`", inline: true },
-        {
-          name: "System RAM Usage",
-          value: "`" + sysMemUsage + "`",
-          inline: true,
-        },
-        { name: `NodeJS Version`, value: "`" + nodeV + "`", inline: true },
-        { name: `Discord.js Version`, value: "`" + djsV + "`", inline: true },
-        { name: `System Uptime`, value: "`" + uptime + "`", inline: true },
-        { name: `Bot Uptime`, value: "`" + botUptime + "`", inline: true }
-      )
-      .setThumbnail(guild.iconURL())
-      .setColor(config.embedColor);
 
     msg.reply({ embeds: [infoEm] });
   },

@@ -1,16 +1,10 @@
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let invEm = new EmbedBuilder()
+  async execute(msg, args, client, config) {
+    let invEm = new Embed()
       .setTitle(`Invite me to your server!`)
-      .setURL(
+      .setUrl(
         `https://discord.com/api/oauth2/authorize?client_id=${config.clientID}&permissions=8&scope=bot%20applications.commands`
       )
       .setColor(config.embedColor)

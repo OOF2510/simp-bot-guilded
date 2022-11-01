@@ -1,15 +1,13 @@
 const got = require("got");
-const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let user = msg.options.getUser("user");
+  async execute(msg, args, client, config) {
+    let recipient
+    if (msg.mentions) {
+      recipient = client.users.cache.get(msg.mentions.users[0])
+    } else {
+      recipient = msg.author
+    }
 
     try {
       let response = await got(
@@ -23,7 +21,7 @@ module.exports = {
         msg.reply(`${insult}`);
       }
     } catch (e) {
-      msg.reply({ content: "Error!", ephemeral: true });
+      msg.reply({ content: "Error!" });
     }
   },
 };

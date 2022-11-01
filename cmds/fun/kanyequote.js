@@ -1,19 +1,12 @@
 const kanye = require("kanye.js");
 
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
+  async execute(msg, args, client, config) {
     let { quote } = await kanye();
-    let quoteEm = new EmbedBuilder()
+    let quoteEm = new Embed()
       .setTitle(`"${quote}"`)
-      .setFooter({ text: `- Ye` })
       .setColor(config.embedColor);
     msg.reply({ embeds: [quoteEm] });
   },

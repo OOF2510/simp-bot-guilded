@@ -1,33 +1,21 @@
 const { getPost } = require("random-reddit");
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let sub = msg.options.getString("subreddit");
+  async execute(msg, args, client, config) {
+    let sub = args[0];
 
     try {
       let post = await getPost(`${sub}`);
 
-      let em = new EmbedBuilder()
+      let em = new Embed()
         .setTitle(`${post.title ? post.title : "Error getting title"}`)
         .setColor(config.embedColor)
-        .setFooter({
-          text: `${post.subreddit_name_prefixed}`,
-          iconURL:
-            "https://logodownload.org/wp-content/uploads/2018/02/reddit-logo-16.png",
-        })
-        .setURL(`https://www.reddit.com${post.permalink}`);
+        .setUrl(`https://www.reddit.com${post.permalink}`);
 
-      if (post.over_18 && !msg.channel.nsfw)
+      if (post.over_18)
         return msg.reply({
           content: `Oops! That post is NSFW, and this channel is not!`,
-          ephemeral: true,
         });
       switch (post.selftext) {
         case "":
@@ -46,7 +34,6 @@ module.exports = {
     } catch (e) {
       msg.reply({
         content: `Are you sure that subreddit exists?`,
-        ephemeral: true,
       });
     }
   },

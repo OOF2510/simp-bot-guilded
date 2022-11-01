@@ -127,16 +127,9 @@ function isSupported(desiredLang) {
   return Boolean(getCode(desiredLang));
 }
 // ------------------------------------------------------
-const { Client, Message } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
+  async execute(msg, args, client, config) {
     let text = msg.options.getString("text");
     let baseLang = msg.options.getString("base-lang");
     let resLang = msg.options.getString("result-lang");
@@ -149,14 +142,13 @@ module.exports = {
           ",",
           `\n`
         )}\``,
-        ephemeral: true,
       });
 
     try {
       let result = await translate(text, { from: baseLang, to: resLang });
       msg.reply(`${result}`);
     } catch (e) {
-      msg.reply({ content: "Error, try again!", ephemeral: true });
+      msg.reply({ content: "Error, try again!" });
     }
   },
 };

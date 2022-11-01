@@ -1,17 +1,11 @@
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let supEm = new EmbedBuilder()
+  async execute(msg, args, client, config) {
+    let supEm = new Embed()
       .setTitle(`Join Simp Bot Support!`)
-      .setURL("https://discord.gg/zHtfa8GdPx")
-      .setTimestamp();
+      .setUrl("https://guilded.gg/Simp-Bot")
+      .setColor(config.embedColor)
 
     msg.reply({ embeds: [supEm] });
   },

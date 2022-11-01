@@ -32,18 +32,22 @@ client.on("messageCreate", async (msg) => {
   if (!msg.content.startsWith(config.prefix)) return;
 
   const commandName = msg.content.split(" ")[0].slice(config.prefix.length);
-  msg.args = msg.content.slice(config.prefix.length).trim().split(/ +/);
+  const args = msg.content.split(" ").slice(1);
 
   const command = client.commands.get(commandName);
   if (!command) return;
 
+  msg.member = await msg.fetchAuthor();
+  msg.author = msg.member.user;
+  if (msg.author.isBot) return;
+
   try {
-    await command.execute(msg, client, config).catch(async (error) => {
-      msg.channel.send(error)
+    await command.execute(msg, args, client, config).catch(async (error) => {
+      msg.reply(`${error}`);
       console.log(error);
     });
   } catch (error) {
-    msg.channel.send(error)
+    msg.reply(`${error}`);
     console.log(error);
   }
 });

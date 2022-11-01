@@ -1,22 +1,16 @@
-const { Client, Message } = require("guilded.ts");
+const { Embed } = require("guilded.ts");
 
 module.exports = {
-  /**
-   * Executes the command
-   * @param {Message} msg
-   * @param {Client} client
-   * @param {*} config
-   */
-  async execute(msg, client, config) {
-    let user = msg.options.getUser("user") || msg.author;
-    let mem = msg.guild.members.cache.get(user.id);
+  async execute(msg, args, client, config) {
+    console.log(`---------------------\n${msg.author}\n---------------------`);
+    if (msg.mentions?.users?.length > 0) console.log(msg.mentions.users[0]);
+    // use '?' syntax to get msg.mentions.users[0] if it exists, then use client.users.cache.get to get the user, otherwise use msg.author
+    let user = msg.mentions?.users[0] ? client.users.cache.get(msg.mentions.users[0].id) : msg.author;
 
-    let userNick = mem ? mem.displayName : user.username;
+    let av = user.avatar? user.avatar : "https://cdn.discordapp.com/embed/avatars/0.png";
 
-    let av = user.displayAvatarURL({ size: 512 });
-
-    let avEm = new EmbedBuilder()
-      .setTitle(`${userNick}'s Avatar`)
+    let avEm = new Embed()
+      .setTitle(`${user.name}'s Avatar`)
       .setImage(av)
       .setColor(config.embedColor)
       .setTimestamp();
