@@ -48,8 +48,4 @@ client.on("messageCreated", async (msg) => {
   }
 });
 
-client.on('error', () => {
-  console.log('oopsie');
-});
-
 client.login()
