@@ -8,7 +8,7 @@ module.exports = {
       .setTitle("Ping")
       .setColor(config.embedColor)
       .addField("API Latency", `\`${ping.createdAt - msg.createdAt}ms\``, true)
-      .addField("Bot Latency", `\`${client.ws.ping?? ''error'ms\``, true)
+      .addField("Bot Latency", `\`${client.ws.ping?? 'error'}ms\``, true)
 
     await ping.edit({ embeds: [pingEm] });
   },
