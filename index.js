@@ -1,4 +1,4 @@
-const Guilded = require("guilded.ts");
+const Guilded = require("guilded.js");
 const { Collection } = require("discord.js");
 
 let config;
@@ -6,7 +6,7 @@ var startupArgs = process.argv.slice(2);
 if (startupArgs[0] == "--dev") config = require("./config.dev.json");
 else config = require("./config.json");
 
-const client = new Guilded.Client();
+const client = new Guilded.Client({ token: config.token });
 
 client.commands = new Collection();
 
@@ -28,7 +28,7 @@ client.on("ready", () => {
   console.log(client.user.name);
 });
 
-client.on("messageCreate", async (msg) => {
+client.on("messageCreated", async (msg) => {
   if (!msg.content.startsWith(config.prefix)) return;
 
   const commandName = msg.content.split(" ")[0].slice(config.prefix.length);
@@ -36,10 +36,6 @@ client.on("messageCreate", async (msg) => {
 
   const command = client.commands.get(commandName);
   if (!command) return;
-
-  msg.member = await msg.fetchAuthor();
-  msg.author = msg.member.user;
-  if (msg.author.isBot) return;
 
   try {
     await command.execute(msg, args, client, config).catch(async (error) => {
@@ -52,4 +48,8 @@ client.on("messageCreate", async (msg) => {
   }
 });
 
-client.login(config.token);
+client.on('error', () => {
+  console.log('oopsie');
+});
+
+client.login()

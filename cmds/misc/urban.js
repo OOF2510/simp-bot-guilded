@@ -1,5 +1,5 @@
 const urban = require("relevant-urban");
-const { Embed } = require("guilded.ts");
+const { Embed } = require("guilded.js");
 
 module.exports = {
   async execute(msg, args, client, config) {

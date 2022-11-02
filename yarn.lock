@@ -19,7 +19,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discordjs/collection@npm:^1.2.0":
+"@discordjs/collection@npm:^1.1.0, @discordjs/collection@npm:^1.2.0":
   version: 1.2.0
   resolution: "@discordjs/collection@npm:1.2.0"
   checksum: 76eae566834d78437363a3437d10c74b485b0a8b0dd350745e7bbb45d0bdc834b8ce6c1008c41728f7cbdf9be80a3147e8006610ed8d34bec8b31b7c521d40c2
@@ -56,30 +56,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@guildedts/builders@npm:^0.2.9":
-  version: 0.2.9
-  resolution: "@guildedts/builders@npm:0.2.9"
-  checksum: 365b4c5a31abf595384e265d97dc7602acfc81c20b6a2a0cd834c75a6b6e331ef783acf2fd4e13838d9812c8dbd7cb5c3bbca026490bf009b3be503f008834f4
+"@guildedjs/guilded-api-typings@npm:2.8.7":
+  version: 2.8.7
+  resolution: "@guildedjs/guilded-api-typings@npm:2.8.7"
+  checksum: 95afbeccabc909b0f2c26096556a30af8b1ccf4b5ac862d66368ef755be6ef355f211e6cc0925912acba1acba5dfb98c6c864df9e3ba1e680cd9000b4b01a40b
   languageName: node
   linkType: hard
 
-"@guildedts/rest@npm:^0.14.1":
-  version: 0.14.1
-  resolution: "@guildedts/rest@npm:0.14.1"
+"@guildedjs/rest@npm:2.9.1":
+  version: 2.9.1
+  resolution: "@guildedjs/rest@npm:2.9.1"
   dependencies:
-    guilded-api-typings: ^0.13.0
-    node-fetch: ^2.6.7
-  checksum: 6ee87072d4aa97b4301e80e8976528770567367d99f3830307b79bda4d2aa301cb1a8a719219bda06ca76bd2e74a515ebf27e28d498e309f584bd6be685df890
+    form-data: ^4.0.0
+    node-fetch: 2.6.7
+    qs: ^6.10.5
+  checksum: 039a29f65168874f3b4eb7a985df99f20b81cc976d6b1d534a814eb69f08f313ac078544d4187cdb0c570c363f77bbdc84e2b51885ed7ddc0828f9bea2ae125d
   languageName: node
   linkType: hard
 
-"@guildedts/ws@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "@guildedts/ws@npm:0.5.0"
+"@guildedjs/webhook-client@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@guildedjs/webhook-client@npm:0.4.2"
   dependencies:
-    "@types/ws": ^8.5.3
-    ws: ^8.8.1
-  checksum: 06e9224a344ea26b5c9bddea398a8779b6c3713c9c7cd809e00a215c74e019529b9d61c9c4738a8ef29ba8a3dce3059b59b73eda92342f249e9d227027352d96
+    "@guildedjs/rest": 2.9.1
+    form-data: ^4.0.0
+  checksum: 3aac53e746de142a10b2c0841acb3e129dd602b1f76f582e65fbbdcbdbf372fa399a17f01f35b6a0422d8774404696ff4b41af50c29813de28567d08468b3f9d
+  languageName: node
+  linkType: hard
+
+"@guildedjs/ws@npm:1.4.11":
+  version: 1.4.11
+  resolution: "@guildedjs/ws@npm:1.4.11"
+  dependencies:
+    "@guildedjs/guilded-api-typings": 2.8.7
+    "@types/ws": 8.5.3
+    typed-emitter: 2.1.0
+    ws: 8.9.0
+  checksum: bd6f6fd8bfe4db1f39fc769fdb2adc8f777c406f7550904fabf2540e5e0dac7f8195715511d497701b6bb7b14592c6a8a166ea5255b3fdda5ca1f780ee9b4081
   languageName: node
   linkType: hard
 
@@ -319,7 +332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:^8.5.3":
+"@types/ws@npm:8.5.3, @types/ws@npm:^8.5.3":
   version: 8.5.3
   resolution: "@types/ws@npm:8.5.3"
   dependencies:
@@ -591,6 +604,16 @@ __metadata:
     normalize-url: ^6.0.1
     responselike: ^2.0.0
   checksum: 6152813982945a5c9989cb457a6c499f12edcc7ade323d2fbfd759abc860bdbd1306e08096916bb413c3c47e812f8e4c0a0cc1e112c8ce94381a960f115bc77f
+  languageName: node
+  linkType: hard
+
+"call-bind@npm:^1.0.0":
+  version: 1.0.2
+  resolution: "call-bind@npm:1.0.2"
+  dependencies:
+    function-bind: ^1.1.1
+    get-intrinsic: ^1.0.2
+  checksum: f8e31de9d19988a4b80f3e704788c4a2d6b6f3d17cfec4f57dc29ced450c53a49270dc66bf0fbd693329ee948dd33e6c90a329519aef17474a4d961e8d6426b0
   languageName: node
   linkType: hard
 
@@ -1080,6 +1103,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"function-bind@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "function-bind@npm:1.1.1"
+  checksum: b32fbaebb3f8ec4969f033073b43f5c8befbb58f1a79e12f1d7490358150359ebd92f49e72ff0144f65f2c48ea2a605bff2d07965f548f6474fd8efd95bf361a
+  languageName: node
+  linkType: hard
+
 "gauge@npm:^4.0.3":
   version: 4.0.4
   resolution: "gauge@npm:4.0.4"
@@ -1093,6 +1123,17 @@ __metadata:
     strip-ansi: ^6.0.1
     wide-align: ^1.1.5
   checksum: 788b6bfe52f1dd8e263cda800c26ac0ca2ff6de0b6eee2fe0d9e3abf15e149b651bd27bf5226be10e6e3edb5c4e5d5985a5a1a98137e7a892f75eff76467ad2d
+  languageName: node
+  linkType: hard
+
+"get-intrinsic@npm:^1.0.2":
+  version: 1.1.3
+  resolution: "get-intrinsic@npm:1.1.3"
+  dependencies:
+    function-bind: ^1.1.1
+    has: ^1.0.3
+    has-symbols: ^1.0.3
+  checksum: 152d79e87251d536cf880ba75cfc3d6c6c50e12b3a64e1ea960e73a3752b47c69f46034456eae1b0894359ce3bc64c55c186f2811f8a788b75b638b06fab228a
   languageName: node
   linkType: hard
 
@@ -1195,23 +1236,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"guilded-api-typings@npm:^0.13.0":
-  version: 0.13.0
-  resolution: "guilded-api-typings@npm:0.13.0"
-  checksum: 4b0af91788aeace85aecace6acc02aca5cfcbf819858e1c1e01f355f09cb1eb7e2ee682dff97ec8fc5ac14a91b314dd635a81a5e9ce648b31a0c6b6751125152
-  languageName: node
-  linkType: hard
-
-"guilded.ts@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "guilded.ts@npm:0.19.0"
+"guilded.js@npm:^0.13.20":
+  version: 0.13.20
+  resolution: "guilded.js@npm:0.13.20"
   dependencies:
-    "@discordjs/collection": ^1.2.0
-    "@guildedts/builders": ^0.2.9
-    "@guildedts/rest": ^0.14.1
-    "@guildedts/ws": ^0.5.0
-    guilded-api-typings: ^0.13.0
-  checksum: ac6d2dcc10e6cc536ba323fc6348200b8aacbcf36e7a9b043fcf66b0903cc87cd49ffd952f56716e9c481ba078692f10257832b55045cb7f062e96447148b6f2
+    "@discordjs/collection": ^1.1.0
+    "@guildedjs/rest": 2.9.1
+    "@guildedjs/webhook-client": 0.4.2
+    "@guildedjs/ws": 1.4.11
+    typed-emitter: 2.1.0
+  checksum: 7a2c79bb6d13c12e9e65daf50ee0d323a3db8a10e06a0b4d8c6dd35e64fb7303b69b2806847a4de4c55ce76296ab935dca98245959aed06ed9b9e2c15198a8e3
   languageName: node
   linkType: hard
 
@@ -1239,10 +1273,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"has-symbols@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "has-symbols@npm:1.0.3"
+  checksum: a054c40c631c0d5741a8285010a0777ea0c068f99ed43e5d6eb12972da223f8af553a455132fdb0801bdcfa0e0f443c0c03a68d8555aa529b3144b446c3f2410
+  languageName: node
+  linkType: hard
+
 "has-unicode@npm:^2.0.1":
   version: 2.0.1
   resolution: "has-unicode@npm:2.0.1"
   checksum: 1eab07a7436512db0be40a710b29b5dc21fa04880b7f63c9980b706683127e3c1b57cb80ea96d47991bdae2dfe479604f6a1ba410106ee1046a41d1bd0814400
+  languageName: node
+  linkType: hard
+
+"has@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "has@npm:1.0.3"
+  dependencies:
+    function-bind: ^1.1.1
+  checksum: b9ad53d53be4af90ce5d1c38331e712522417d017d5ef1ebd0507e07c2fbad8686fffb8e12ddecd4c39ca9b9b47431afbb975b8abf7f3c3b82c98e9aad052792
   languageName: node
   linkType: hard
 
@@ -1795,7 +1845,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.7, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7":
+"node-fetch@npm:2.6.7, node-fetch@npm:^2.6.1":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
@@ -1933,6 +1983,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"object-inspect@npm:^1.9.0":
+  version: 1.12.2
+  resolution: "object-inspect@npm:1.12.2"
+  checksum: a534fc1b8534284ed71f25ce3a496013b7ea030f3d1b77118f6b7b1713829262be9e6243acbcb3ef8c626e2b64186112cb7f6db74e37b2789b9c789ca23048b2
+  languageName: node
+  linkType: hard
+
 "once@npm:^1.3.0, once@npm:^1.3.1, once@npm:^1.4.0":
   version: 1.4.0
   resolution: "once@npm:1.4.0"
@@ -2047,6 +2104,15 @@ __metadata:
   version: 2.1.1
   resolution: "punycode@npm:2.1.1"
   checksum: 823bf443c6dd14f669984dea25757b37993f67e8d94698996064035edd43bed8a5a17a9f12e439c2b35df1078c6bec05a6c86e336209eb1061e8025c481168e8
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.10.5":
+  version: 6.11.0
+  resolution: "qs@npm:6.11.0"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 6e1f29dd5385f7488ec74ac7b6c92f4d09a90408882d0c208414a34dd33badc1a621019d4c799a3df15ab9b1d0292f97c1dd71dc7c045e69f81a8064e5af7297
   languageName: node
   linkType: hard
 
@@ -2176,6 +2242,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rxjs@npm:*":
+  version: 7.5.7
+  resolution: "rxjs@npm:7.5.7"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: edabcdb73b0f7e0f5f6e05c2077aff8c52222ac939069729704357d6406438acca831c24210db320aba269e86dbe1a400f3769c89101791885121a342fb15d9c
+  languageName: node
+  linkType: hard
+
 "safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
@@ -2233,6 +2308,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"side-channel@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "side-channel@npm:1.0.4"
+  dependencies:
+    call-bind: ^1.0.0
+    get-intrinsic: ^1.0.2
+    object-inspect: ^1.9.0
+  checksum: 351e41b947079c10bd0858364f32bb3a7379514c399edb64ab3dce683933483fc63fb5e4efe0a15a2e8a7e3c436b6a91736ddb8d8c6591b0460a24bb4a1ee245
+  languageName: node
+  linkType: hard
+
 "signal-exit@npm:^3.0.2, signal-exit@npm:^3.0.7":
   version: 3.0.7
   resolution: "signal-exit@npm:3.0.7"
@@ -2251,8 +2337,7 @@ __metadata:
     craiyon: ^1.0.0
     discord.js: ^14.6.0
     got: 11.8.3
-    guilded-api-typings: ^0.13.0
-    guilded.ts: ^0.19.0
+    guilded.js: ^0.13.20
     huggingface-api: ^1.0.3
     kanye.js: ^1.0.1
     libsodium-wrappers: ^0.7.10
@@ -2488,17 +2573,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:^2.1.0, tslib@npm:^2.4.0":
+  version: 2.4.1
+  resolution: "tslib@npm:2.4.1"
+  checksum: 19480d6e0313292bd6505d4efe096a6b31c70e21cf08b5febf4da62e95c265c8f571f7b36fcc3d1a17e068032f59c269fab3459d6cd3ed6949eafecf64315fca
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^2.3.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.4.0":
-  version: 2.4.1
-  resolution: "tslib@npm:2.4.1"
-  checksum: 19480d6e0313292bd6505d4efe096a6b31c70e21cf08b5febf4da62e95c265c8f571f7b36fcc3d1a17e068032f59c269fab3459d6cd3ed6949eafecf64315fca
   languageName: node
   linkType: hard
 
@@ -2522,6 +2607,18 @@ __metadata:
   version: 1.4.0
   resolution: "type-fest@npm:1.4.0"
   checksum: b011c3388665b097ae6a109a437a04d6f61d81b7357f74cbcb02246f2f5bd72b888ae33631b99871388122ba0a87f4ff1c94078e7119ff22c70e52c0ff828201
+  languageName: node
+  linkType: hard
+
+"typed-emitter@npm:2.1.0":
+  version: 2.1.0
+  resolution: "typed-emitter@npm:2.1.0"
+  dependencies:
+    rxjs: "*"
+  dependenciesMeta:
+    rxjs:
+      optional: true
+  checksum: 95821a9e05784b972cc9d152891fd12a56cb4b1a7c57e768c02bea6a8984da7aff8f19404a7b69eea11fae2a3b6c0c510a4c510f575f50162c759ae9059f2520
   languageName: node
   linkType: hard
 
@@ -2712,7 +2809,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.8.1, ws@npm:^8.9.0":
+"ws@npm:8.9.0":
+  version: 8.9.0
+  resolution: "ws@npm:8.9.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 23aa0f021b2eb65c108ec4c3e08c0d81ba01f82b500432dfe327fd6be36079c1d81fdb0eac6464d2a0eb49904d34a9ab8c59619d673fa07b8346f83aeb0cbf12
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.9.0":
   version: 8.10.0
   resolution: "ws@npm:8.10.0"
   peerDependencies:

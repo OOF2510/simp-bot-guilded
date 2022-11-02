@@ -3,11 +3,10 @@ const exec = promisify(require("child_process").exec);
 let os = require("os");
 const millisecondsToStr = require("./../../util/convertMilsec.js");
 const formatBytes = require("./../../util/formatBytes.js");
-const { Embed } = require("guilded.ts");
+const { Embed } = require("guilded.js");
 
 module.exports = {
   async execute(msg, args, client, config) {
-    let guild = msg.guild;
 
     var uptimeMilsec = os.uptime() * 1000,
       uptime = millisecondsToStr(uptimeMilsec),
@@ -23,7 +22,7 @@ module.exports = {
     let NodeV = await exec("node -v"),
       nodeV = NodeV.stdout.trim();
 
-    let DjsV = require("../../package.json").dependencies["guilded.ts"],
+    let DjsV = require("../../package.json").dependencies["guilded.js"],
       djsV = DjsV.replace("^", "v");
 
     let infoEm = new Embed()
@@ -35,7 +34,7 @@ module.exports = {
       .addField('Bot RAM Usage', memUsage, true)
       .addField('System RAM Usage', sysMemUsage, true)
       .addField('Node Version', nodeV, true)
-      .addField('Guilded.ts Version', djsV, true)
+      .addField('Guilded.js Version', djsV, true)
       .setColor(config.embedColor)
       .setTitle("Info")
 
